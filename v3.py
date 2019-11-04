@@ -9,13 +9,11 @@ from keras import backend as k
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler, TensorBoard, EarlyStopping
 from keras.layers.normalization import BatchNormalization
 from keras.regularizers import l1_l2
-import efficientnet.keras as efn
-
 
 from config import config
 from data import data, INPUT_FORM_PARAMETERS
 
-MODEL_NAME = "v2"
+MODEL_NAME = "v3"
 
 OPTIMIZERS = {
     "sgd-01-0.9": lambda: optimizers.SGD(lr=0.01, momentum=0.9),
