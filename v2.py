@@ -55,7 +55,7 @@ def model(input_form="all", aux_size=0, hyperparameters=dict()):
 
     #skip for now
     if parameters["t2"]:
-        convnet = applications.ResNet50(
+        convnet = efn.EfficientNetB0(
             weights="imagenet",
             include_top=False,
             input_shape=(config.IMAGE_SIZE, config.IMAGE_SIZE, 3),
@@ -70,7 +70,7 @@ def model(input_form="all", aux_size=0, hyperparameters=dict()):
 
     if parameters["t1"]:
         # init ResNet
-        convnet = applications.ResNet50(
+        convnet = efn.EfficientNetB0(
             weights="imagenet",
             include_top=False,
             input_shape=(config.IMAGE_SIZE, config.IMAGE_SIZE, 3),
