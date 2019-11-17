@@ -42,6 +42,7 @@ class Config(object):
     NRRD_FEATURES = os.path.join(FEATURES_DIR, "nrrd-features.pkl")
     FEATURES = os.path.join(FEATURES_DIR, "training-features.pkl")
     PREPROCESS = os.path.join(FEATURES_DIR, "preprocess.pkl")
+    MULTIPLE_LESIONS = os.path.join(FEATURES_DIR, "multiple-lesions.csv")
 
     INPUT_FORM = "all"
 
