@@ -6,7 +6,7 @@ class Config(object):
     IMAGE_SIZE = 200
 
     # Should change trials to 10
-    TRIALS = 20 
+    TRIALS = 10
     BATCH_SIZE = 16
 
     EPOCHS = 500
@@ -53,9 +53,9 @@ class Config(object):
     STDERR_DIR = os.path.join(OUTPUT, "stderr")
     DATASET_RECORDS = os.path.join(OUTPUT, "datasets")
 
-    MAIN_TEST_HOLDOUT = 0.2
+    MAIN_TEST_HOLDOUT = 0.20
     NUMBER_OF_FOLDS = 4
-    SPLIT_TRAINING_INTO_VALIDATION = 0.1
+    SPLIT_TRAINING_INTO_VALIDATION = 0.20
 
 
 config = Config()

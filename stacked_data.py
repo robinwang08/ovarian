@@ -4,6 +4,7 @@ import efficientnet.keras
 from keras.models import load_model
 from keras import backend as K
 import math
+import numpy
 from uuid import uuid4, UUID
 
 from db import Result, XResult
@@ -155,10 +156,16 @@ def xstacked_data(
 
         split = UUID(result.split)
 
+        # splitting the initial training and holdout test sets
         f = pandas.read_pickle(config.FEATURES)
-        y = f[result.label_form].values
 
-        # k_fold_train, holdout_test, y_train, y_test = train_test_split(f, y, test_size=config.MAIN_TEST_HOLDOUT, stratify=y, random_state=int(split) % 2 ** 32)
+        put_In_Training = pandas.read_csv(config.MULTIPLE_LESIONS)
+        df_List = list(put_In_Training['ID'])
+        multiple = f[f['patient'].isin(df_List)]
+        multiple_y = multiple[result.label_form].values
+
+        new_df = f[~f.patient.isin(df_List)]
+        y = new_df[result.label_form].values
 
         # set up the k-fold process
         skf = StratifiedKFold(n_splits=config.NUMBER_OF_FOLDS, random_state=int(split) % 2 ** 32)
@@ -172,16 +179,22 @@ def xstacked_data(
                 continue
 
             # get the training and testing set for the fold
-            X_train, testing = f.iloc[train_index], f.iloc[test_index]
+            X_train, testing = new_df.iloc[train_index], new_df.iloc[test_index]
             y_train, y_test = y[train_index], y[test_index]
+
+            # append multiple lesions into training/validation
+            X_train = X_train.append(multiple, ignore_index=False)
+            y_train = numpy.concatenate((y_train, multiple_y))
+
             # split the training into training and validation
-            train, valid, result_train, result_test = train_test_split(X_train, y_train,
+            training, validation, result_train, result_test = train_test_split(X_train, y_train,
                                                                                test_size=config.SPLIT_TRAINING_INTO_VALIDATION,
                                                                                stratify=y_train,
                                                                                random_state=int(split) % 2 ** 32)
 
+
             # train_generator, validation_generator, test_generator, holdout_test_generator
-            train_generator, validation_generator, test_generator = xdata(fold_number, train, valid,
+            train_generator, validation_generator, test_generator = xdata(fold_number, training, validation,
                                                                                             testing,  # holdout_test,
                                                                                             split,
                                                                                             input_form=result.input_form,
@@ -192,7 +205,7 @@ def xstacked_data(
                                                                                             validation_augment=False)
 
             # train_generator_f, validation_generator_f, test_generator_f, holdout_test_generator_f
-            train_generator_f, validation_generator_f, test_generator_f = xdata(fold_number, train, valid,
+            train_generator_f, validation_generator_f, test_generator_f = xdata(fold_number, training, validation,
                                                                                                     testing,  # holdout_test,
                                                                                                     split,
                                                                                                     input_form=result.input_form,
