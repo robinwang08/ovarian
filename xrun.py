@@ -221,7 +221,7 @@ if __name__ == '__main__':
     else:
         split = UUID(split)
     # check to make sure we didn't use the description on another run AND split
-    xanalyze.check_run_and_split(FLAGS.description, str(split), FLAGS.form)
+    # xanalyze.check_run_and_split(FLAGS.description, str(split), FLAGS.form)
 
     # splitting the initial training and holdout test sets
     f = pandas.read_pickle(config.FEATURES)
