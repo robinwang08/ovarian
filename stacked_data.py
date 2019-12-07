@@ -142,6 +142,7 @@ def xstacked_data(
         ):
     results = [ XResult.query.filter(XResult.run_id == uuid).first() for uuid in uuids ]
     assert len(results) > 0, "no models found"
+    assert len(set([result.split for result in results])) == 1, "all models must be trained on the same split"
     assert len(set([result.label_form for result in results])) == 1, "all models must be trained on the same label"
     training = dict()
     training_fixed = dict()
