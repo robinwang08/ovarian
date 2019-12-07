@@ -1,3 +1,3 @@
-pipenv run python run.py --description $1 --model v2 --form t1 --label outcome --hyperparameters hyperparameters.json --split 62e0fad6-783f-4453-af2f-a52b241f1188
-pipenv run python run.py --description $1 --model v2 --form t2 --label outcome --hyperparameters hyperparameters.json --split 62e0fad6-783f-4453-af2f-a52b241f1188
-pipenv run python run.py --description $1 --model v2 --form features --label outcome --hyperparameters hyperparameters.json --split 62e0fad6-783f-4453-af2f-a52b241f1188
+pipenv run python run.py --description $1 --model v2 --form t1 --label outcome --hyperparameters hyperparameters.json --split c07386a3-ce2e-4714-aa1b-3ba39836e82f
+pipenv run python run.py --description $1 --model v2 --form t2 --label outcome --hyperparameters hyperparameters.json --split c07386a3-ce2e-4714-aa1b-3ba39836e82f
+pipenv run python run.py --description $1 --model v2 --form features --label outcome --hyperparameters hyperparameters.json --split c07386a3-ce2e-4714-aa1b-3ba39836e82f
