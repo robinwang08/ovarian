@@ -172,7 +172,7 @@ def xstacked_data(
 
         # get the folds and loop over each fold
         fold_number = 0
-        for train_index, test_index in skf.split(f, y):
+        for train_index, test_index in skf.split(new_df, y):
             fold_number += 1
 
             if fold_number != result.fold:
