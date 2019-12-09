@@ -179,7 +179,7 @@ def xstacked_data(
                 continue
 
             # get the training and testing set for the fold
-            X_train, testing = new_df.iloc[train_index], new_df.iloc[test_index]
+            X_train, testingSet = new_df.iloc[train_index], new_df.iloc[test_index]
             y_train, y_test = y[train_index], y[test_index]
 
             # append multiple lesions into training/validation
@@ -187,15 +187,15 @@ def xstacked_data(
             y_train = numpy.concatenate((y_train, multiple_y))
 
             # split the training into training and validation
-            training, validation, result_train, result_test = train_test_split(X_train, y_train,
+            trainingSet, validationSet, result_train, result_test = train_test_split(X_train, y_train,
                                                                                test_size=config.SPLIT_TRAINING_INTO_VALIDATION,
                                                                                stratify=y_train,
                                                                                random_state=int(split) % 2 ** 32)
 
 
             # train_generator, validation_generator, test_generator, holdout_test_generator
-            train_generator, validation_generator, test_generator = xdata(fold_number, training, validation,
-                                                                                            testing,  # holdout_test,
+            train_generator, validation_generator, test_generator = xdata(fold_number, trainingSet, validationSet,
+                                                                                            testingSet,  # holdout_test,
                                                                                             split,
                                                                                             input_form=result.input_form,
                                                                                             label_form=result.label_form,
@@ -205,8 +205,8 @@ def xstacked_data(
                                                                                             validation_augment=False)
 
             # train_generator_f, validation_generator_f, test_generator_f, holdout_test_generator_f
-            train_generator_f, validation_generator_f, test_generator_f = xdata(fold_number, training, validation,
-                                                                                                    testing,  # holdout_test,
+            train_generator_f, validation_generator_f, test_generator_f = xdata(fold_number, trainingSet, validationSet,
+                                                                                                    testingSet,  # holdout_test,
                                                                                                     split,
                                                                                                     input_form=result.input_form,
                                                                                                     label_form=result.label_form,
