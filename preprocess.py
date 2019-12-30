@@ -52,7 +52,11 @@ def preprocess_pack(reference, images_w_segmentations, use_n4_bias=False, use_re
 
 def run(files, out, use_n4_bias=False, use_registration=False):
     f = pandas.read_pickle(files)
+    print("read pickle")
+    a=0
     for index, row in f.iterrows():
+        print(a)
+        a = a+1
         try:
             print("working on {} {}".format(index, "-" * 40))
             t1 = row.to_frame().loc["path", T1, IMAGE][0]
