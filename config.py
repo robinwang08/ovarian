@@ -34,13 +34,13 @@ class Config(object):
         # "C:/research/ovarian/ovarian_data/csv/",
         ]
 
-    DATA = "/media/user1/my4TB/robin/ovarian/ovarian_data/segmenter1/data"
+    DATA = "/media/user1/my4TB/robin/ovarian/ovarian_data/segmenter1-data/data"
     PREPROCESSED_DIR = os.path.join(DATA, "preprocessed")
     TRAIN_DIR = os.path.join(DATA, "train")
     TEST_DIR = os.path.join(DATA, "test")
     VALIDATION_DIR = os.path.join(DATA, "validation")
 
-    FEATURES_DIR = "/media/user1/my4TB/robin/ovarian/ovarian_data/segmenter1/features"
+    FEATURES_DIR = "/media/user1/my4TB/robin/ovarian/ovarian_data/segmenter1-data/features"
     NRRD_FEATURES = os.path.join(FEATURES_DIR, "nrrd-features.pkl")
     FEATURES = os.path.join(FEATURES_DIR, "training-features.pkl")
     PREPROCESS = os.path.join(FEATURES_DIR, "preprocess.pkl")
