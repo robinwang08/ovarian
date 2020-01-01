@@ -19,20 +19,20 @@ def calc():
 
     patho = '/media/user1/my4TB/robin/ovarian/ovarian_data'
     baseDir = os.path.normpath(patho)
-    files1 = glob(baseDir + '/zj/*/T2/segMask_tumor.nrrd')
+    files1 = glob(baseDir + '/segmenter1/*/T1POST/segMask_tumor.nrrd')
 
     for file in files1:
         count = count + 1
         filePath, fileName = os.path.split(file)
         a = filePath.split('/')
 
-        zzstartPath = '/media/user1/my4TB/robin/ovarian/ovarian_data/zz/'
+        zzstartPath = '/media/user1/my4TB/robin/ovarian/ovarian_data/segmenter2/'
         zznePath = zzstartPath + '/' + a[8]
-        zzzPathFile = zznePath + '/T2/' + fileName
+        zzzPathFile = zznePath + '/T1POST/' + fileName
 
         rawstartPath = '/media/user1/my4TB/robin/ovarian/ovarian_data/raw/'
         rawnePath = rawstartPath + '/' + a[8]
-        rawwnePathFile = rawnePath + '/T2/' + fileName
+        rawwnePathFile = rawnePath + '/T1POST/' + fileName
 
 
         zj_nrrd = nrrd.read(file)
@@ -54,9 +54,9 @@ def calc():
     b = avgrawzj / count
     c = avgrawzz / count
 
-    f.write('zz-zj: ' + str(a) + '\n')
-    f.write('raw-zj: ' + str(b) + '\n')
-    f.write('raw-zz: ' + str(c) + '\n')
+    f.write('seg2-seg1: ' + str(a) + '\n')
+    f.write('raw-seg1: ' + str(b) + '\n')
+    f.write('raw-seg2: ' + str(c) + '\n')
 
     f.close()
 
