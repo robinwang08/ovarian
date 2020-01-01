@@ -54,7 +54,8 @@ def calc():
             count = count - 1
             continue
 
-        print('File ' + file + ' raw-seg1 diff: ' + avgrawzj + ' raw-seg2 diff: ' + avgrawzz)
+        print('File ' + file + ' raw-seg1 diff: ' + str(avgrawzj) + ' raw-seg2 diff: ' + str(avgrawzz))
+
 
     a = avgzzzj / count
     b = avgrawzj / count
