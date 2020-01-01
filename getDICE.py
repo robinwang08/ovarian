@@ -44,9 +44,15 @@ def calc():
         raw_nrrd = nrrd.read(rawwnePathFile)
         rawdata = raw_nrrd[0]
 
-        avgzzzj = avgzzzj + dice_score(zzdata, zjdata)
-        avgrawzz = avgrawzz + dice_score(rawdata, zzdata)
-        avgrawzj = avgrawzj + dice_score(rawdata, zjdata)
+        try:
+            avgzzzj = avgzzzj + dice_score(zzdata, zjdata)
+            avgrawzz = avgrawzz + dice_score(rawdata, zzdata)
+            avgrawzj = avgrawzj + dice_score(rawdata, zjdata)
+
+        except:
+            print('error with ' + file)
+            count = count -1
+            continue
 
         print('done with ' + file)
 
