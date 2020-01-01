@@ -19,7 +19,7 @@ def calc():
 
     patho = '/media/user1/my4TB/robin/ovarian/ovarian_data'
     baseDir = os.path.normpath(patho)
-    files1 = glob(baseDir + '/segmenter1/*/T2/segMask_tumor.nrrd')
+    files1 = glob(baseDir + '/segmenter1/*/T1POST/segMask_tumor.nrrd')
 
     for file in files1:
         count = count + 1
@@ -28,11 +28,11 @@ def calc():
 
         zzstartPath = '/media/user1/my4TB/robin/ovarian/ovarian_data/segmenter2/'
         zznePath = zzstartPath + '/' + a[8]
-        zzzPathFile = zznePath + '/T2/' + fileName
+        zzzPathFile = zznePath + '/T1POST/' + fileName
 
         rawstartPath = '/media/user1/my4TB/robin/ovarian/ovarian_data/raw/'
         rawnePath = rawstartPath + '/' + a[8]
-        rawwnePathFile = rawnePath + '/T2/' + fileName
+        rawwnePathFile = rawnePath + '/T1POST/' + fileName
 
 
         zj_nrrd = nrrd.read(file)
@@ -51,10 +51,10 @@ def calc():
 
         except:
             print('error with ' + file)
-            count = count -1
+            count = count - 1
             continue
 
-        print('done with ' + file)
+        print('File ' + file + ' raw-seg1 diff: ' + avgrawzj + ' raw-seg2 diff: ' + avgrawzz)
 
     a = avgzzzj / count
     b = avgrawzj / count
