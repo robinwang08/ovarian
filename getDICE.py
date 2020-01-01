@@ -49,12 +49,13 @@ def calc():
             avgrawzz = avgrawzz + dice_score(rawdata, zzdata)
             avgrawzj = avgrawzj + dice_score(rawdata, zjdata)
 
+            print('File ' + file + ' raw-seg1 diff: ' + str(dice_score(rawdata, zjdata)) + ' raw-seg2 diff: ' + str(dice_score(rawdata, zzdata)))
+
         except:
             print('error with ' + file)
             count = count - 1
             continue
 
-        print('File ' + file + ' raw-seg1 diff: ' + str(avgrawzj) + ' raw-seg2 diff: ' + str(avgrawzz))
 
 
     a = avgzzzj / count
